@@ -1,0 +1,150 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Sample API for CarparkUbi",
+    "version": "1.0",
+    "title": "CarparkUbi API",
+    "termsOfService": "Free to use",
+    "contact": {
+      "name": "Sergey Sindeev",
+      "url": "https://www.ubitricity.com/",
+      "email": "svsindeev@gmail.com"
+    },
+    "license": {
+      "name": "API License",
+      "url": "https://www.ubitricity.com/"
+    }
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "carpark-ubi-controller",
+      "description": "Carpark Ubi Controller"
+    }
+  ],
+  "paths": {
+    "/api/v1/carparkubi/connect": {
+      "post": {
+        "tags": [
+          "carpark-ubi-controller"
+        ],
+        "summary": "Connect charging point",
+        "description": "Connect charging point. Connecting already connected charging point is forbidden",
+        "operationId": "connectChargingPointUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "charging_point_id",
+            "in": "query",
+            "description": "ID value for the charging point you need to connect",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "403": {
+            "description": "Charging point is already connected"
+          },
+          "404": {
+            "description": "Charging point id is out of range"
+          }
+        }
+      }
+    },
+    "/api/v1/carparkubi/disconnect": {
+      "delete": {
+        "tags": [
+          "carpark-ubi-controller"
+        ],
+        "summary": "Disconnect charging point",
+        "description": "Disconnect charging point. Disconnecting already disconnected charging point is forbidden",
+        "operationId": "disconnectChargingPointUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "charging_point_id",
+            "in": "query",
+            "description": "ID value for the charging point you need to disconnect",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "403": {
+            "description": "Charging point is already disconnected"
+          },
+          "404": {
+            "description": "Charging point id is out of range"
+          }
+        }
+      }
+    },
+    "/api/v1/carparkubi/report": {
+      "get": {
+        "tags": [
+          "carpark-ubi-controller"
+        ],
+        "summary": "Get status report",
+        "description": "Return a report of current status of all charging points",
+        "operationId": "getReportUsingGET",
+        "produces": [
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}
