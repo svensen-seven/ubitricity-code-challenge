@@ -140,7 +140,8 @@
           "200": {
             "description": "OK",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "example": "CP1 AVAILABLE\nCP2 AVAILABLE\nCP3 AVAILABLE\nCP4 AVAILABLE\nCP5 AVAILABLE\nCP6 AVAILABLE\nCP7 AVAILABLE\nCP8 AVAILABLE\nCP9 AVAILABLE\nCP10 AVAILABLE"
             }
           }
         }
